@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>detail_page</title>
+
+    <script src="../js/httpRequest.js" th:inline="javascript"
+            type="text/javascript"></script>
+
+    <!-- 제이쿼리 불러오기 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <!-- Slick 불러오기 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../css/mainpage.css">
+    <script>
+        $(function(){
+            $('.slider_1').slick({
+                slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li
+                infinite : false, 	//무한 반복 옵션
+                slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+                slidesToScroll : 3,		//스크롤 한번에 움직일 컨텐츠 개수
+                speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+                arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+                dots : false, 		// 스크롤바 아래 점으로 페이지네이션 여부
+                //centerMode:true,
+                //centerPadding :'-50px',
+                autoplay : true,			// 자동 스크롤 사용 여부
+                autoplaySpeed : 5000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+                pauseOnHover : false,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+                vertical : false,		// 세로 방향 슬라이드 옵션
+                prevArrow : "<button type='button' class='slick-prev'>Previous</button>",		// 이전 화살표 모양 설정
+                nextArrow : "<button type='button' class='slick-next'>Next</button>",		// 다음 화살표 모양 설정
+                dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
+                draggable : true, 	//드래그 가능 여부
+
+            });
+        })
+   $(function(){
+            $('.slider_2').slick({
+                slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li
+                infinite : false, 	//무한 반복 옵션
+                slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+                slidesToScroll : 3,		//스크롤 한번에 움직일 컨텐츠 개수
+                speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+                arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+                dots : false, 		// 스크롤바 아래 점으로 페이지네이션 여부
+                //centerMode:true,
+                //centerPadding :'-50px',
+                autoplay : true,			// 자동 스크롤 사용 여부
+                autoplaySpeed : 5000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+                pauseOnHover : false,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+                vertical : false,		// 세로 방향 슬라이드 옵션
+                prevArrow : "<button type='button' class='slick-prev'>Previous</button>",		// 이전 화살표 모양 설정
+                nextArrow : "<button type='button' class='slick-next'>Next</button>",		// 다음 화살표 모양 설정
+                dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
+                draggable : true, 	//드래그 가능 여부
+
+            });
+        })
+
+    </script>
+
+    <style>
+        html{
+            font-size: 10px;
+            overflow: hidden;
+        }
+        html,body{
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: #FEF1E6;
+        }
+        .section {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .main_contents h1{
+            position: relative;
+            left: 3%;
+            top: 0%;
+
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 4.2rem;
+            /*line-height: 84px;*/
+
+            color: #FEF1E6;
+        }
+        #tot_num{
+            position: absolute;
+            left: 3.4%;
+            top: 10%;
+
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 1rem;
+            /*line-height: 84px;*/
+
+            color: #FEF1E6;
+        }
+        .top{
+            position: absolute;
+            width:85%;
+            height: 50%;
+            background: #90AACB;
+            right:0%;
+            top:-2%;
+
+            border-radius: 15px;
+        }
+        #logo{
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 3rem;
+            /*line-height: 84px;*/
+            margin-left: 2%;
+            color: #161E54;
+        }
+        .bottom{
+            position: absolute;
+            width:90%;
+            height: 50%;
+            background: #90AACB;
+            left:-2%;
+            bottom:0%;
+            border-radius: 15px;
+        }
+        .slider_1{
+            position: absolute;
+            right: 5%;
+            top:15%;
+            width: 80%;
+            height: 80%;
+
+        }
+
+        .slider_2{
+            position: absolute;
+            right: 7%;
+            top:10%;
+            width: 80%;
+            height: 80%;
+            z-index: 2;
+
+        }
+
+
+    </style>
+
+    <script th:inline="javascript">
+        //장바구니 유무 판단 스크립트
+        function cartCheck(f){
+            /*<![CDATA[*/
+            var session =/*[[  ${session.id} ]]*/;
+            /*]]*/
+            var url = "/cartCheckF";
+            var param = "contentid="+f.contentid.value;
+            if(session==null){
+                alert("로그인 해주세요!");
+                return;
+            }else{
+                sendRequest(url,param,resultFn,"post");
+                function resultFn() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var data = xhr.responseText;
+                        if(data=='no'){
+                            alert("이미 담겨있는 영화입니다!");
+                            return;
+                        }else{
+                            if(!confirm("장바구니에 담으시겠습니까?")){
+                                return;
+                            }else if(data=='ReOk'){
+                                alert("장바구니에 담겼습니다!");
+                                if(!confirm("장바구니로 이동하시겠습니까?")){
+                                    return;
+                                }
+                                location.href="/wishlist";
+                            }else{
+                                wishlist(f);
+
+
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        //장바구니 함수
+        function wishlist(f){
+            /*<![CDATA[*/
+            var session =/*[[  ${session.id} ]]*/;
+            /*]]*/
+
+            f.action="/wishlistInsert";
+            f.method="post";
+            f.submit();
+
+        }
+        function getParam(sname) {
+
+            var params = location.search.substr(location.search.indexOf("?") + 1);
+
+            var sval = "";
+
+            params = params.split("&");
+
+            for (var i = 0; i < params.length; i++) {
+
+                temp = params[i].split("=");
+
+                if ([temp[0]] == sname) { sval = temp[1]; }
+
+            }
+
+            return sval;
+
+        }
+        function detail(f) {
+            var contentid = f.contentid.value;
+            var type=f.type.value;
+
+            location.href="/detail?contentid=" + contentid+"&type="+type;
+
+        }
+
+        function openPopup() {
+
+            var _width = '500';
+            var _height = '500';
+
+            // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+            var _left = Math.ceil(( window.screen.width - _width )/2);
+            var _top = Math.ceil(( window.screen.height - _height )/2);
+
+            window.open('/users/loginForm', '로그인', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+
+        }
+        window.onload = function() {
+            var keyword=getParam('keyword');
+
+            var url = "https://api.themoviedb.org/3/search/multi";
+            var param ="query="+keyword+"&api_key=217af67226aa2d50a57b98fae86f1383&language=ko-KR";
+            sendRequest(url, param, detailFn, "GET");
+        }
+
+        function detailFn() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var data = xhr.responseText;
+                var json = eval("[" + data + "]");
+                var info = json[0];
+                // output += '<h3>' + (i + 1) + '번째 데이터' + '</h3>';
+                var tot_num=info.total_results;
+
+                if( info.results[0].known_for != undefined){
+                    for(i=0; i<20;i++){
+
+                        $('.slider').slick('slickAdd', '<div  id="content"' + i + ' >' +
+                            '<form><input  type="image" class="recom" src="Https://image.tmdb.org/t/p/original' + info.results[i].profile_path + '"  style="border-radius:15px;width:200px; height:255px;"onclick="detail(this.form); return false;">' +
+                            '<input type="hidden" name="contentid" value="' + info.results[i].id + '"/>' +'<input type="hidden" name="type" value="' + info.results[i].media_type + '"/>'+
+                            '<h2>' + info.results[i].name + '</h2></div>');
+
+
+                    }
+
+                }else {
+                    for (i = 0; i < 20; i++) {
+
+                        if (info.results[i].media_type == "movie") {
+
+                            $('.slider_1').slick('slickAdd', '<div  id="content"' + i + ' >' +
+                                '<form>' +
+                                '<input  type="image" name="image"class="recom" src="Https://image.tmdb.org/t/p/original' + info.results[i].poster_path + '"  style="border-radius:15px;width:200px; height:255px;"onclick="detail(this.form); return false;"/>' +
+                                '<input type="hidden" name="contentid" value="' + info.results[i].id + '"/><input type="hidden" name="title" value="' + info.results[i].title + '"/>'+
+                                '<input type="hidden" name="type" value="' + info.results[i].media_type + '"/>'+
+                                '<h2>' + info.results[i].title + '</h2>' +
+                                '<input  type="hidden" name="image" value="Https://image.tmdb.org/t/p/original' + info.results[i].poster_path + '"/> ' +
+                                ' <input class="wish_button" type="button" value="장바구니담기" onclick="cartCheck(this.form);">' +
+                                '</form>');
+
+                        } else if(info.results[i].media_type == "tv") {
+                            $('.slider_2').slick('slickAdd', '<div  id="content"' + i + ' >' +
+                                '<form>' +
+                                '<input  type="image" name="image"class="recom" src="Https://image.tmdb.org/t/p/original' + info.results[i].poster_path + '"  style="border-radius:15px;width:200px; height:255px;"onclick="detail(this.form); return false;"/>' +
+                                '<input type="hidden" name="contentid" value="' + info.results[i].id + '"/><input type="hidden" name="title" value="' + info.results[i].name + '"/>'+
+                                '<input type="hidden" name="type" value="' + info.results[i].media_type + '"/>'+
+                                '<h2>' + info.results[i].name + '</h2>' +
+                                '<input  type="hidden" name="image" value="Https://image.tmdb.org/t/p/original' + info.results[i].poster_path + '"/> ' +
+                                ' <input class="wish_button" type="button" value="장바구니담기" onclick="cartCheck(this.form);">' +
+                                '</form>');
+                        }
+
+                    }
+                }
+
+
+                var result='';
+                result+='<h2>총 '+tot_num+' 개의 검색결과</h2>';
+                document.getElementById('tot_num').innerHTML+=result;
+
+
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<div class="section">
+
+    <div class="main_contents" >
+        <h1 id="logo" onclick="location.href='/'">무비드랍!</h1>
+
+        <div class="login">
+
+            <div  th:if="${session.id==null}"  >
+                <a onclick="openPopup();">로그인</a>
+            </div>
+
+            <div  th:unless="${session.id==null}"  class="login"  >
+                <h2 th:text="${session.name}+'님 안녕하세요'" ></h2>
+                <input class="wish_button" type="button" onclick="location.href='/wishlist'"  value="장바구니"  >
+                <input class="wish_button" type="button" onclick="location.href='/users/logout'"  value="로그아웃"  >
+            </div>
+
+
+        </div>
+
+        <div id="tot_num"></div>
+
+        <div class="top">
+            <div class="slider_1" >
+            </div>
+        </div>
+
+        <div class="bottom">
+            <div class="slider_2" >
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

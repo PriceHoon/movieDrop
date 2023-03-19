@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function sendF(f) {
+            var contents = f.contents.value;
+
+            if (contents == '') {
+                alert("수정할 내용을 입력하세요!");
+                return
+            }
+
+            if(!confirm("정말로 리뷰를 수정하시겠습니까?")){
+                return;
+            }
+            alert(f.id.value);
+            alert(f.contentid.value);
+            f.action="/update_review";
+            f.method="post";
+            f.submit();
+
+        }
+
+
+    </script>
+    <style>
+        body{
+            background: #FEF1E6;
+        }
+        .up_date_review{
+            position: absolute;
+            width:80%;
+            height: 80%;
+            background: #90AACB;
+            top: 15%;
+            border-radius: 15px;
+
+        }
+        h1{
+            position: absolute;
+            left:5%;
+
+            tab-size: 15px;
+        }
+        .input_1{
+            position: absolute;
+            width :90%;
+            height: 20%;
+            border-radius: 100px ;
+
+            top:10%;
+            right: -13%;
+            border:10px solid #90AACB;
+
+            text-align: center;
+            outline: none;
+        }
+
+        .button_1{
+            position: absolute;
+            width :45%;
+            height: 20%;
+            border-radius: 100px ;
+            border:10px solid #90AACB;
+            top:70%;
+            right: -10%;
+            text-align: center;
+            outline: none;
+        }
+        .radio{
+            position: absolute;
+            border-radius: 100px ;
+
+            top:50%;
+            left: 5%;
+            border:10px solid #90AACB;
+
+            text-align: center;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>리뷰수정</h1>
+<div class="up_date_review">
+    <form>
+        <input type="hidden" name="id" th:value="${review.id}"/>
+        <input type="hidden" name="contentid" th:value="${review.contentid}">
+        <input class="input_1" name="contents"/>
+        <div class="radio">
+            <input type="radio" name="star"value="1">1점
+            <input type="radio" name="star"value="2">2점
+            <input type="radio" name="star"value="3" checked>3점
+            <input type="radio" name="star"value="4">4점
+            <input type="radio" name="star"value="5">5점
+        </div>
+        <input class="button_1" type="button" value="수정하기" onclick="sendF(this.form);">
+
+    </form>
+
+</div>
+
+
+</body>
+</html>

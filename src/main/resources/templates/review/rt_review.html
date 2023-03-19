@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        html{
+            font-size: 10px;
+            overflow: hidden;
+        }
+        html,body{
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: #FEF1E6;
+        }
+        .section {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .side{
+            width:30%
+        }
+        .main{
+            position: absolute;
+            background: #90AACB;
+            width: 80%;
+            height: 110%;
+
+            right: 0%;
+            top:-10%
+        }
+        .slider{
+            position: fixed;
+            width:60%;
+            height:70%;
+            left: 30%;
+            top:10%;
+
+            overflow: visible;
+
+        }
+        .content{
+            position: relative;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: bold;
+            border: 2px #FEF1E6;
+            border-radius: 10px;
+
+
+        }
+        #poster{
+            position: static;
+        }
+       #writer{
+           position: absolute;
+           top:5%;
+           left:30%;
+           width:50%;
+       }    #title{
+           position: absolute;
+           top:20%;
+           left:30%;
+           width:50%;
+       } #review{
+           position: absolute;
+           top:50%;
+           left:30%;
+           width:50%;
+       }
+         #review input{
+             width: 90%;
+         } #review title{
+             width: 90%;
+         }
+        #star{
+           position: absolute;
+           bottom:5%;
+           left:30%;
+           width:50%;
+       }
+        input{
+            background: #90AACB;
+            border: none;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .ud_review{
+            position: absolute;
+            bottom: 5%;
+            right:40%;
+        }
+        .button{
+            background: #FEF1E6;
+            border-radius: 10px;
+            border: #90AACB;
+        }
+        #logo{
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 5rem;
+        }
+        .login{
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 4rem;
+        }
+        .login input {
+            background: #FEF1E6;
+        }
+        .login h2{
+            font-size: 2.5rem;
+        }
+
+
+
+    </style>
+
+</head>
+<!-- 제이쿼리 불러오기 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<!-- Slick 불러오기 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+
+<!-- Slick 제이쿼리 선언    -->
+<script>
+    $(function(){
+        $('.slider').slick({
+            slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li
+            infinite : false, 	//무한 반복 옵션
+            slidesToShow : 3,		// 한 화면에 보여질 컨텐츠 개수
+            slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+            speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+            arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+            dots : false, 		// 스크롤바 아래 점으로 페이지네이션 여부
+            centerMode:false,
+            initialSlide:0,
+            autoplay : false,			// 자동 스크롤 사용 여부
+            autoplaySpeed : 5000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+            pauseOnHover : false,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+            vertical : true,		// 세로 방향 슬라이드 옵션
+            prevArrow : "<button type='button' class='slick-up' style='position:relative; background:#90AACB; left:40%; border-radius: 50px;'>^</button>",		// 이전 화살표 모양 설정
+            nextArrow : "<button type='button' class='slick-down'style='position:relative; background:#90AACB;  left:40%; border-radius: 50px;'>v</button>",		// 다음 화살표 모양 설정
+            dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
+            draggable : false	//드래그 가능 여부
+
+
+        });
+    })
+        </script>
+    <script>
+
+        function u_review(f){
+
+            var _width = '500';
+            var _height = '500';
+
+            // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+            var _left = Math.ceil(( window.screen.width - _width )/2);
+            var _top = Math.ceil(( window.screen.height - _height )/2);
+
+            window.open('', '리뷰수정', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+
+            //window.open("", "리뷰수정", "'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top  );
+            f.target="리뷰수정";
+            f.action="/update_reviewForm";
+            f.method="post";
+            f.submit();
+        }
+
+        function d_review(f) {
+            var title = f.title.value;
+
+            if(!confirm(title+" 리뷰를 삭제하시겠습니까?")){
+                return;
+            }
+
+            f.action="/deleteReview";
+            f.method="post";
+            f.submit();
+
+        }
+
+        function openPopup() {
+
+            var _width = '500';
+            var _height = '500';
+
+            // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+            var _left = Math.ceil(( window.screen.width - _width )/2);
+            var _top = Math.ceil(( window.screen.height - _height )/2);
+
+            window.open('/users/loginForm', '로그인', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+
+        }
+
+
+    </script>
+
+
+<body>
+<div class="section">
+    <div class="side">
+        <h1 id="logo" onclick="location.href='/'">무비드랍!</h1>
+
+        <div class="login">
+            <div  th:if="${session.id==null}"  >
+                <a onclick="openPopup();">로그인</a>
+            </div>
+
+            <div  th:unless="${session.id==null}"  class="login"  >
+                <h2 th:text="${session.name}+'님 안녕하세요'" ></h2>
+                <input class="wish_button" type="button" onclick="location.href='/wishlist'"  value="장바구니"  >
+                <input class="wish_button" type="button" onclick="location.href='/users/logout'"  value="로그아웃"  >
+            </div>
+        </div>
+
+    </div>
+
+    <div class="main">
+        <div class="slider">
+            <div class="content"  th:each="review : ${review}" th:if="${review.del_flag=='0'}" >
+                <form>
+                    <input type="hidden" name="contentid" th:value="${review.contentid}"/>
+                    <img id="poster" th:src="${review.posterPath}"  style="border-radius:15px;width:200px; height: 230px;"/>
+                    <div id="writer">
+                       작성자 :<input type="text" style="border:none" name="id" th:value="${review.id}"/>
+                    </div>
+                    <div id="title">
+
+                        제목 :<input type="text" style="border:none" name="title"th:value="${review.title}"/>
+                    </div>
+                    <div id="star">
+                        별점 :<input type="text" style="border:none" name="star"th:value="${review.star}" />
+                    </div>
+                    <div id="review">
+                        감상평 :<input type="text" style="border:none" name="contents"th:value="${review.contents}" />
+                    </div>
+
+                    <div class="ud_review" th:if =${session.id==review.id}>
+                        <input class="button" type="button" value="수정" onclick="u_review(this.form);"/>
+                        <input class="button" type="button" value="삭제" onclick="d_review(this.form);"/>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>

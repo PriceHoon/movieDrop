@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http//www.thymleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mainpage</title>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0" />
+
+    <!-- httprequest 참조 선언-->
+    <script src="../js/httpRequest.js" th:inline="javascript"
+            type="text/javascript"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 제이쿼리 불러오기 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <!-- Slick 불러오기 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+
+    <!-- Slick 제이쿼리 선언    -->
+    <script>
+        $(function(){
+            $('.slider').slick({
+                slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li
+                infinite : true, 	//무한 반복 옵션
+                slidesToShow : 5,		// 한 화면에 보여질 컨텐츠 개수
+                slidesToScroll : 3,		//스크롤 한번에 움직일 컨텐츠 개수
+                speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+                arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+                dots : false, 		// 스크롤바 아래 점으로 페이지네이션 여부
+                centerMode:false,
+
+                autoplay : true,			// 자동 스크롤 사용 여부
+                autoplaySpeed : 5000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+                pauseOnHover : false,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+                vertical : false,		// 세로 방향 슬라이드 옵션
+                prevArrow : "<button type='button' class='slick-prev'>Previous</button>",		// 이전 화살표 모양 설정
+                nextArrow : "<button type='button' class='slick-next'>Next</button>",		// 다음 화살표 모양 설정
+                dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
+                draggable : false, 	//드래그 가능 여부
+
+                responsive: [ // 반응형 웹 구현 옵션
+                    {
+                        breakpoint: 960, //화면 사이즈 960px
+                        settings: {
+                            //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                            slidesToShow:3
+                        }
+                    },
+                    {
+                        breakpoint: 768, //화면 사이즈 768px
+                        settings: {
+                            //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                            slidesToShow:2
+                        }
+                    }
+                ]
+
+            });
+        })
+        $(function(){
+            $('.slider_2').slick({
+                slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li
+                infinite : true, 	//무한 반복 옵션
+                slidesToShow : 5,		// 한 화면에 보여질 컨텐츠 개수
+                slidesToScroll : 3,		//스크롤 한번에 움직일 컨텐츠 개수
+                speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+                arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+                dots : false, 		// 스크롤바 아래 점으로 페이지네이션 여부
+                centerMode:false,
+
+                autoplay : true,			// 자동 스크롤 사용 여부
+                autoplaySpeed : 5000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+                pauseOnHover : false,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+                vertical : false,		// 세로 방향 슬라이드 옵션
+                prevArrow : "<button type='button' class='slick-prev'>Previous</button>",		// 이전 화살표 모양 설정
+                nextArrow : "<button type='button' class='slick-next'>Next</button>",		// 다음 화살표 모양 설정
+                dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
+                draggable : false, 	//드래그 가능 여부
+
+                responsive: [ // 반응형 웹 구현 옵션
+                    {
+                        breakpoint: 960, //화면 사이즈 960px
+                        settings: {
+                            //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                            slidesToShow:3
+                        }
+                    },
+                    {
+                        breakpoint: 768, //화면 사이즈 768px
+                        settings: {
+                            //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                            slidesToShow:2
+                        }
+                    }
+                ]
+
+            });
+        })
+    </script>
+    <!-- 화면 분할 동작 스크립트 -->
+    <script>
+        var $html = $("html");
+
+        var page = 1;
+
+        var lastPage = $(".section").length;
+
+        $html.animate({scrollTop:0},10);
+
+        $(window).on("wheel", function(e){
+
+            if($html.is(":animated")) return;
+
+            if(e.originalEvent.deltaY > 0){
+                if(page== lastPage) return;
+
+                page++;
+            }else if(e.originalEvent.deltaY < 0){
+                if(page == 1) return;
+
+                page--;
+            }
+            var posTop = (page-1) * $(window).height();
+
+            $html.animate({scrollTop : posTop});
+
+        });
+
+
+
+    </script>
+
+    <!--Api 호출 및 응답값 출력 스크립트-->
+    <script  th:inline="javascript" >
+
+        window.onload=function(){
+
+            window.addEventListener("wheel", function(e){
+                e.preventDefault();
+            },{passive : false});
+
+            var url = "https://api.themoviedb.org/3/trending/movie/day";
+            var param ="api_key=217af67226aa2d50a57b98fae86f1383&language=ko-KR";
+            sendRequest(url,param,totalFn,"get");
+        }
+
+        function totalFn() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+
+                var data = xhr.responseText;
+                var json = eval("[" + data + "]");
+                var info = json[0];
+
+                var i;
+
+                for(i=0; i<20;i++){
+                    var content = '';
+                    var title = '';
+
+                    content += '<form>';
+                    content += '<div class="content">' +
+                        '<input type="image" class="recom" src=Https://image.tmdb.org/t/p/original'
+                        + info.results[i].poster_path
+                        + ' style="border-radius:15px;" onclick="detail(this.form); return false;">';
+                    content += '<input type="hidden" name="contentid" value="'+ info.results[i].id + '" />';
+
+                    content += '<input type="hidden" name="image" value="Https://image.tmdb.org/t/p/original'
+                        + info.results[i].poster_path + '" />';
+                    content += '<input type="hidden" name="title" value="'
+                        + info.results[i].title+ '" />';
+                    content += '<input type="hidden" name="type" value="'
+                        + info.results[i].media_type+ '" />';
+
+                    content += '<h4 class="title_font">'  +(i+1)+'. '+ info.results[i].title + '</h4>';
+                    content += '<input class="wish_button" type="button" value="장바구니담기" onclick="cartCheck(this.form);"></div>';
+                    content += '</form>';
+
+                    document.getElementById("content" + i).innerHTML += content;
+
+                }
+                drama();
+            }
+        }
+
+        function drama(){
+            var url = "https://api.themoviedb.org/3/trending/tv/day";
+            var param ="api_key=217af67226aa2d50a57b98fae86f1383&language=ko-KR";
+            sendRequest(url,param,totalFn_2,"get");
+        }
+        function totalFn_2() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+
+                var data = xhr.responseText;
+                var json = eval("[" + data + "]");
+                var info = json[0];
+
+                var i;
+
+                for(i=0; i<20;i++){
+                    var content = '';
+
+                    content += '<form>';
+                    content += '<div class="content_2">' +
+                        '<input type="image" class="recom_2" src=Https://image.tmdb.org/t/p/original'
+                        + info.results[i].poster_path
+                        + ' style="border-radius:15px;" onclick="detail(this.form); return false;">';
+                    content += '<input type="hidden" name="contentid" value="'+ info.results[i].id + '" />';
+
+                    content += '<input type="hidden" name="image" value="Https://image.tmdb.org/t/p/original'
+                        + info.results[i].poster_path + '" />';
+                    content += '<input type="hidden" name="title" value="'
+                        + info.results[i].name+ '" />';
+                    content += '<input type="hidden" name="type" value="'
+                        + info.results[i].media_type+ '" />';
+
+                    content += '<h4 class="title_font">' +(i+1)+'. '+ info.results[i].name + '</h4>';
+                    content += '<input class="wish_button" type="button" value="장바구니담기" onclick="cartCheck(this.form);"></div>';
+                    content += '</form>';
+
+                    document.getElementById("content2_" + i).innerHTML += content;
+
+                }
+
+            }
+        }
+    </script>
+
+    <!-- 각종 함수 처리 스크립트-->
+    <script th:inline="javascript">
+        //장바구니 유무 판단 스크립트
+        function cartCheck(f){
+            /*<![CDATA[*/
+            var session =/*[[  ${session.id} ]]*/;
+            /*]]*/
+            var url = "/cartCheckF";
+            var param = "contentid="+f.contentid.value;
+            if(session==null){
+                alert("로그인 해주세요!");
+                return;
+            }else{
+                sendRequest(url,param,resultFn,"post");
+                function resultFn() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var data = xhr.responseText;
+                        if(data=='no'){
+                            alert("이미 담겨있는 영화입니다!");
+                            return;
+                        }else{
+                            if(!confirm("장바구니에 담으시겠습니까?")){
+                                return;
+                            }else if(data=='ReOk'){
+                                alert("장바구니에 담겼습니다!");
+                                if(!confirm("장바구니로 이동하시겠습니까?")){
+                                    return;
+                                }
+                                location.href="/wishlist";
+                            }else{
+                                wishlist(f);
+
+
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        //장바구니 함수
+        function wishlist(f){
+            /*<![CDATA[*/
+            var session =/*[[  ${session.id} ]]*/;
+            /*]]*/
+
+            f.action="/wishlistInsert";
+            f.method="post";
+            f.submit();
+
+        }
+        //영화 상세정보 함수
+        function detail(f) {
+            var contentid = f.contentid.value;
+            var type=f.type.value;
+
+            location.href="/detail?contentid=" + contentid+"&type="+type;
+
+        }
+        //검색 함수
+        function search(f) {
+            var keyword = f.keyword.value;
+            if(keyword != ""){
+                location.href="/search?keyword=" + keyword;
+            }else{
+                alert ("검색어를 입력하세요!");
+            }
+        }
+
+        function openPopup() {
+
+            var _width = '800';
+            var _height = '800';
+
+            // 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+            var _left = Math.ceil(( window.screen.width - _width )/2);
+            var _top = Math.ceil(( window.screen.height - _height )/2);
+
+            window.open('/users/loginForm', '로그인', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+
+        }
+
+
+    </script>
+
+    <!--페이지 디자인 css-->
+    <style type="text/css">
+        @media screen and (min-width:1441px) {
+            html{
+                font-size: 10px;
+                overflow: hidden;
+            }
+            html,body{
+                display: block;
+                width: 100%;
+                height: 100%;
+                position: relative;
+                background: #FEF1E6;
+            }
+            .section {
+                width: 100%;
+                height: 100%;
+                position: relative;
+            }
+
+
+            .header {
+                position: absolute;
+
+                width: 60%;
+                height: 40%;
+                right: -10%;
+                top: 41px;
+
+                background: #161E54;
+                border-radius: 15px;
+            }
+            .header h2{
+                position: relative;
+                left: 15%;
+                top: 7%;
+
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 4.8rem;
+                line-height: 84px;
+
+                color: #FEF1E6;
+            }
+
+            .header h1{
+                position: relative;
+                left: 40%;
+                bottom: 0%;
+
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 8rem;
+                line-height: 84px;
+
+                color: #FEF1E6;
+            }
+
+            .search_bar{
+                position: absolute;
+                width: 90%;
+                height: 70%;
+                left: 0%;
+                bottom: 0%;
+
+                background: #90AACB;
+                border-radius: 15px;
+            }
+            .search_bar h1{
+                position: absolute;
+                left:10%;
+                top:20%;
+
+                font-size: 3rem;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+                color: #FEF1E6;
+            }
+            .wish_button{
+
+                width :50%;
+                height: 10%;
+
+                border-radius: 100px ;
+                border:3px solid #90AACB;
+                font-size: 5px;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+
+
+            }
+            @keyframes blink-effect { 60% { opacity: 30%; } }
+
+
+            .search_bar input{
+                position: absolute;
+                right: -5%;
+                top: 50%;
+                width :60%;
+                height: 10%;
+                border-radius: 100px ;
+                border:10px solid #90AACB;
+                font-size: 2rem;
+                text-align: center;
+                outline: none;
+            }
+
+            .login{
+
+                position: absolute;
+                left:10%;
+                top:10%;
+                width: 250px;
+                height: 200px;
+                font-size: 2.2rem;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+
+
+            }
+            .login h2{
+                text-align: left;
+                font-size: 2.2rem;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+            }
+
+            .main_contents{
+                position: absolute;
+                width:90%;
+                height: 80%;
+                background: #90AACB;
+                right:0%;
+                top:0%;
+
+                border-radius: 15px;
+            }
+            .main_contents_2{
+                position: absolute;
+                width:90%;
+                height: 80%;
+                background: #90AACB;
+                left:-1%;
+                top:0%;
+
+                border-radius: 15px;
+            }
+            .main_contents h1{
+                position: absolute;
+                font-size: 3rem;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+                color: #FEF1E6;
+                left:7%;
+                top:4%;
+
+            }  .main_contents h2{
+                   position: absolute;
+                   font-size: 2rem;
+                   font-family: Roboto;
+                   font-style: normal;
+                   font-weight: bold;
+                   color: #FEF1E6;
+                   right:7%;
+                   top:8%;
+               }
+            .main_contents_2 h1{
+                position: absolute;
+                font-size: 3rem;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+                color: #FEF1E6;
+                left:7%;
+                top:4%;
+
+            }  .main_contents_2 h2{
+                   position: absolute;
+                   font-size: 2rem;
+                   font-family: Roboto;
+                   font-style: normal;
+                   font-weight: bold;
+                   color: #FEF1E6;
+                   right:7%;
+                   top:8%;
+               }
+
+            ::placeholder {
+                font-size: 2rem;
+            }
+            .slider{
+                position: absolute;
+                right: 7%;
+                top:25%;
+                width: 80%;
+                height: 60%;
+
+            }
+
+            .slider_2{
+                position: absolute;
+                left: 9%;
+                top:25%;
+                width: 80%;
+                height: 60%;
+
+            }
+            .recom{
+                width: 180px;
+                height: 245px;
+
+            }
+            .content{
+                margin-right: 10px;
+            }
+            .recom_2{
+                width: 180px;
+                height: 245px;
+
+            }
+            .title_font{
+                font-size: 1.3rem;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+                color: #1d1d1b;
+            }
+
+            .content_2{
+                margin-right: 10px;
+            }
+            .bottom{
+                font-size: 1.5rem;
+            }
+            .move{
+                animation: blink-effect 3s step-end infinite;
+                font-size: 2rem;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+                color: #FEF1E6;
+                text-decoration: none;
+            }
+            #move_1{
+                position: absolute;
+                left:10%;
+                top:40%;
+
+            }
+            #move_2{
+                position: absolute;
+                left:10%;
+                top:50%;
+
+            }#move_3{
+                 position: absolute;
+                 left:3%;
+                 bottom:4%;
+
+             }#move_4{
+                  position: absolute;
+                  left:16%;
+                  bottom:4%;
+
+              }#move_5{
+                   position: absolute;
+                   right:16%;
+                   bottom:4%;
+
+               }#move_6{
+                    position: absolute;
+                    right:3%;
+                    bottom:4%;
+
+
+                }
+            #move_10{
+                position: absolute;
+                left:10%;
+                top:60%;
+
+            }
+
+
+        }
+
+
+        @media  screen and (max-width:1440px) {
+            html{
+                font-size: 10px;
+                overflow: hidden;
+            }
+            html,body{
+                display: block;
+                width: 100%;
+                height: 100%;
+                position: relative;
+                background: #FEF1E6;
+            }
+            .section {
+                width: 100%;
+                height: 100%;
+                position: relative;
+            }
+
+
+            .header {
+                position: absolute;
+
+                width: 60%;
+                height: 40%;
+                right: -10%;
+                top: 41px;
+
+                background: #161E54;
+                border-radius: 15px;
+            }
+            .header h2{
+                position: relative;
+                left: 15%;
+                top: 7%;
+
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 4.8rem;
+                line-height: 84px;
+
+                color: #FEF1E6;
+            }
+
+            .header h1{
+                position: relative;
+                left: 40%;
+                bottom: 0%;
+
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 8rem;
+                line-height: 84px;
+
+                color: #FEF1E6;
+            }
+
+            .search_bar{
+                position: absolute;
+                width: 90%;
+                height: 70%;
+                left: 0%;
+                bottom: 0%;
+
+                background: #90AACB;
+                border-radius: 15px;
+            }
+            .search_bar h1{
+                position: absolute;
+                left:10%;
+                top:20%;
+
+                font-size: 3rem;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+                color: #FEF1E6;
+            }
+            .wish_button{
+
+                width :50%;
+                height: 10%;
+
+                border-radius: 100px ;
+                border:3px solid #90AACB;
+                font-size: 5px;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+
+
+            }
+            @keyframes blink-effect { 60% { opacity: 30%; } }
+
+
+            .search_bar input{
+                position: absolute;
+                right: -5%;
+                top: 50%;
+                width :60%;
+                height: 10%;
+                border-radius: 100px ;
+                border:10px solid #90AACB;
+                font-size: 2rem;
+                text-align: center;
+                outline: none;
+            }
+
+            .login{
+                position: absolute;
+                left:10%;
+                top:10%;
+                width: 250px;
+                height: 200px;
+                font-size: 2.2rem;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+
+
+            }
+            .login h2{
+               text-align: left;
+                font-size: 2.2rem;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+            }
+
+            .main_contents{
+                position: absolute;
+                width:90%;
+                height: 80%;
+                background: #90AACB;
+                right:0%;
+                top:0%;
+
+                border-radius: 15px;
+            }
+            .main_contents_2{
+                position: absolute;
+                width:90%;
+                height: 80%;
+                background: #90AACB;
+                left:-1%;
+                top:0%;
+
+                border-radius: 15px;
+            }
+            .main_contents h1{
+                position: absolute;
+                font-size: 3rem;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+                color: #FEF1E6;
+                left:7%;
+                top:4%;
+
+            }  .main_contents h2{
+                   position: absolute;
+                   font-size: 2rem;
+                   font-family: Roboto;
+                   font-style: normal;
+                   font-weight: bold;
+                   color: #FEF1E6;
+                   right:7%;
+                   top:8%;
+               }
+            .main_contents_2 h1{
+                position: absolute;
+                font-size: 3rem;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+                color: #FEF1E6;
+                left:7%;
+                top:4%;
+
+            }  .main_contents_2 h2{
+                   position: absolute;
+                   font-size: 2rem;
+                   font-family: Roboto;
+                   font-style: normal;
+                   font-weight: bold;
+                   color: #FEF1E6;
+                   right:7%;
+                   top:8%;
+               }
+
+            ::placeholder {
+                font-size: 2rem;
+            }
+            .slider{
+                position: absolute;
+                right: 7%;
+                top:25%;
+                width: 80%;
+                height: 60%;
+
+            }
+
+            .slider_2{
+                position: absolute;
+                left: 9%;
+                top:25%;
+                width: 80%;
+                height: 60%;
+
+            }
+            .recom{
+                width: 180px;
+                height: 245px;
+
+            }
+            .content{
+                margin-right: 10px;
+            }
+            .recom_2{
+                 width: 180px;
+                 height: 245px;
+
+            }
+              .title_font{
+                  font-size: 1.3rem;
+                  font-family: Roboto;
+                  font-style: normal;
+                  font-weight: bold;
+                  color: #1d1d1b;
+              }
+
+            .content_2{
+                margin-right: 10px;
+            }
+            .bottom{
+                font-size: 1.5rem;
+            }
+            .move{
+                animation: blink-effect 3s step-end infinite;
+                font-size: 2rem;
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: bold;
+                color: #FEF1E6;
+                text-decoration: none;
+            }
+            #move_1{
+                position: absolute;
+                left:10%;
+                top:40%;
+
+            }
+             #move_2{
+                position: absolute;
+                left:10%;
+                top:50%;
+
+            }#move_3{
+                position: absolute;
+                left:3%;
+                bottom:4%;
+
+            }#move_4{
+                position: absolute;
+                left:16%;
+                bottom:4%;
+
+            }#move_5{
+                position: absolute;
+                right:16%;
+                bottom:4%;
+
+            }#move_6{
+                position: absolute;
+                right:3%;
+                bottom:4%;
+
+
+            }
+            #move_10{
+                position: absolute;
+                left:10%;
+                top:60%;
+
+            }
+
+
+        }
+
+    </style>
+
+
+</head>
+<body>
+<div class="section">
+    <a name="top"></a>
+    <div class="search_bar">
+        <form onsubmit="return false">
+            <h1>수백만 개의 영화 정보, 바로 검색해보세요.</h1>
+            <input type="text" name="keyword" onkeydown="Javascript:if( event.keyCode == 13 ){search(this.form);}" placeholder="    영화, 배우이름 검색..." />
+            <a class="move" id ="move_1"href="#target_1"> 인기있는 영화 </a>
+            <a class="move"  id ="move_2" href="#target_2"> 인기있는 드라마 </a>
+            <a class="move" id ="move_10" onclick="location.href='/seeReview'"> 회원들의 실시간 리뷰 </a>
+        </form>
+    </div>
+
+
+    <div class="header">
+        <h2>영화 검색은?</h2>
+        <h1>무비드랍!</h1>
+    </div>
+
+    <div class="login">
+
+        <div  th:if="${session.id==null}"  >
+            <a onclick="openPopup();">로그인</a>
+        </div>
+
+        <div  th:unless="${session.id==null}"  class="login"  >
+            <h2 th:text="${session.name}+'님 안녕하세요'" ></h2>
+            <input class="wish_button" type="button" onclick="location.href='/wishlist'"  value="장바구니"  >
+            <input class="wish_button" type="button" onclick="location.href='/users/logout'"  value="로그아웃"  >
+        </div>
+
+
+    </div>
+</div>
+
+
+<div class="section">
+    <a name="target_1"></a>
+    <div class="main_contents" >
+        <h1 id="line_content">오늘의 인기 영화</h1>
+        <h2 >위시리스트에 보고싶은 영화를 담아보세요</h2>
+            <a class="move" id ="move_3"href="#target_2"> 인기있는 드라마 </a>
+            <a class="move" id="move_4" href="#top"> 메인 페이지 </a>
+        <div class="slider">
+            <div class="popular" >
+                <div id="content0"></div>
+            </div>
+
+            <div class="popular">
+                <div id="content1"></div>
+            </div>
+
+            <div class="popular">
+                <div id="content2"></div>
+            </div>
+
+            <div class="popular">
+                <div id="content3"></div>
+            </div>
+
+            <div class="popular">
+                <div id="content4"></div>
+            </div>
+            <div class="popular">
+                <div id="content5"></div>
+            </div>
+            <div class="popular">
+                <div id="content6"></div>
+            </div>
+            <div class="popular">
+                <div id="content7"></div>
+            </div>
+            <div class="popular">
+                <div id="content8"></div>
+            </div>
+            <div class="popular">
+                <div id="content9"></div>
+            </div>
+
+            <div class="popular" >
+                <div id="content10"></div>
+            </div>
+
+            <div class="popular">
+                <div id="content11"></div>
+            </div>
+
+            <div class="popular">
+                <div id="content12"></div>
+            </div>
+
+            <div class="popular">
+                <div id="content13"></div>
+            </div>
+
+            <div class="popular">
+                <div id="content14"></div>
+            </div>
+            <div class="popular">
+                <div id="content15"></div>
+            </div>
+            <div class="popular">
+                <div id="content16"></div>
+            </div>
+            <div class="popular">
+                <div id="content17"></div>
+            </div>
+            <div class="popular">
+                <div id="content18"></div>
+            </div>
+            <div class="popular">
+                <div id="content19"></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="section">
+    <a name="target_2"></a>
+    <div class="main_contents_2" >
+        <h1 id="line_content_2">오늘의 인기 TV 프로그램</h1>
+        <h2 >위시리스트에 보고싶은 TV프로그램을 담아보세요</h2>
+        <a class="move" id ="move_5"href="#target_1"> 인기있는 영화 </a>
+        <a class="move" id="move_6" href="#top"> 메인 페이지 </a>
+        <div class="slider_2">
+            <div class="popular" >
+                <div id="content2_0"></div>
+            </div>
+
+            <div class="popular">
+                <div id="content2_1"></div>
+            </div>
+
+            <div class="popular">
+                <div id="content2_2"></div>
+            </div>
+
+            <div class="popular">
+                <div id="content2_3"></div>
+            </div>
+
+            <div class="popular">
+                <div id="content2_4"></div>
+            </div>
+            <div class="popular">
+                <div id="content2_5"></div>
+            </div>
+            <div class="popular">
+                <div id="content2_6"></div>
+            </div>
+            <div class="popular">
+                <div id="content2_7"></div>
+            </div>
+            <div class="popular">
+                <div id="content2_8"></div>
+            </div>
+            <div class="popular">
+                <div id="content2_9"></div>
+            </div>
+
+            <div class="popular" >
+                <div id="content2_10"></div>
+            </div>
+
+            <div class="popular">
+                <div id="content2_11"></div>
+            </div>
+
+            <div class="popular">
+                <div id="content2_12"></div>
+            </div>
+
+            <div class="popular">
+                <div id="content2_13"></div>
+            </div>
+
+            <div class="popular">
+                <div id="content2_14"></div>
+            </div>
+            <div class="popular">
+                <div id="content2_15"></div>
+            </div>
+            <div class="popular">
+                <div id="content2_16"></div>
+            </div>
+            <div class="popular">
+                <div id="content2_17"></div>
+            </div>
+            <div class="popular">
+                <div id="content2_18"></div>
+            </div>
+            <div class="popular">
+                <div id="content2_19"></div>
+            </div>
+        </div>
+
+    </div>
+    <a href="#top"> 최상</a>
+    <h1 class="bottom">회사소개&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;인재채용&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;제휴제안&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이용약관&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;개인정보처리방침&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;청소년보호정책&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;서비스정책고객센터&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ⓒ SERVICE Corp. </h1>
+</div>
+
+
+</body>
+
+</html>

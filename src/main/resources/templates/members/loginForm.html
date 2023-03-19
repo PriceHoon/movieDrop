@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymleaf.org">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/httpRequest.js" type="text/javascript" ></script>
+    <script>
+
+        function sendF(f){
+            var id = f.id.value.trim();
+            var pwd = f.pwd.value.trim();
+
+            if(id==''){
+                alert("아이디를 입력하세요!");
+                return;
+            }
+
+            if(pwd==''){
+                alert("비밀번호를 입력하세요!");
+                return;
+            }
+
+
+        var url = "/users/login";
+        var param = "id="+id+"&pwd="+pwd;
+
+          sendRequest(url,param,resultFn,"POST");
+        }
+
+
+       	function resultFn(){
+			if( xhr.readyState == 4 && xhr.status == 200 ){
+					//서버측에서 넘겨준 json형식의 결과 값.
+		           var data = JSON.parse(xhr.responseText);
+<!--				   var json = eval(data);-->
+
+					if(data.idInfo == 'no_id'){
+						alert("아이디가 존재하지 않습니다.");
+					}else if(data.pwInfo == 'no_pwd'){
+						alert("비밀번호가 일치하지 않습니다!");
+					}else if(data.sucessInfo=='clear'){
+                            opener.window.location = "/";
+                            // 호출 한 뒤 현재 팝업 창 닫기 이벤트
+                            close();
+
+                    }
+
+			}
+
+		}
+
+    </script>
+    <style>
+        body{
+            background: #FEF1E6;
+        }
+    .back{
+        position: absolute;
+        width:80%;
+        height: 80%;
+        background: #90AACB;
+        top: 15%;
+        border-radius: 15px;
+
+    }
+     h1{
+        position: absolute;
+        left:5%;
+
+        tab-size: 15px;
+    }
+    .input_1{
+        position: absolute;
+        width :90%;
+        height: 20%;
+        border-radius: 100px ;
+
+        top:10%;
+        right: -13%;
+        border:10px solid #90AACB;
+
+        text-align: center;
+        outline: none;
+    }
+    .input_2{
+        position: absolute;
+        width :90%;
+        height: 20%;
+        border-radius: 100px ;
+        border:10px solid #90AACB;
+               top:40%;
+               right: -13%;
+        text-align: center;
+        outline: none;
+    }
+        .button_1{
+        position: absolute;
+        width :45%;
+        height: 20%;
+        border-radius: 100px ;
+        border:10px solid #90AACB;
+               top:70%;
+               right: 34%;
+        text-align: center;
+        outline: none;
+    }    .button_2{
+        position: absolute;
+        width :45%;
+        height: 20%;
+        border-radius: 100px ;
+        border:10px solid #90AACB;
+               top:70%;
+               right: -13%;
+        text-align: center;
+        outline: none;
+    }
+    </style>
+</head>
+
+
+<body>
+
+
+<form>
+    <h1>회원이신가요?</h1>
+<div class="back">
+
+    <input class="input_1" name="id"placeholder="아이디">
+    <input class="input_2" type="password" name="pwd"placeholder="비밀번호" >
+    <input class="button_1" type="button" value="로그인" onclick="sendF(this.form);">
+    <input class="button_2"type="button" onclick="location.href='/users/add'" value="회원가입">
+
+</div>
+
+
+</form>
+</body>
+</html>

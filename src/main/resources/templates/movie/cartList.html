@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 제이쿼리 불러오기 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <!-- Slick 불러오기 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+
+    <!-- Slick 제이쿼리 선언    -->
+    <script>
+        $(function(){
+            $('.slider_1').slick({
+                slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li
+                infinite : true, 	//무한 반복 옵션
+                slidesToShow :3,		// 한 화면에 보여질 컨텐츠 개수
+                slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+                speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+                arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+                dots : false, 		// 스크롤바 아래 점으로 페이지네이션 여부
+                centerMode:false,
+                autoplay : false,			// 자동 스크롤 사용 여부
+                vertical : false,		// 세로 방향 슬라이드 옵션
+                prevArrow : "<button type='button' class='slick-prev'>Previous</button>",		// 이전 화살표 모양 설정
+                nextArrow : "<button type='button' class='slick-next'>Next</button>",		// 다음 화살표 모양 설정
+            });
+        })
+        $(function(){
+            $('.slider_2').slick({
+                slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li
+                infinite : true, 	//무한 반복 옵션
+                slidesToShow :1,		// 한 화면에 보여질 컨텐츠 개수
+                slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+                speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+                arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+                dots : false, 		// 스크롤바 아래 점으로 페이지네이션 여부
+                centerMode:false,
+                autoplay : false,			// 자동 스크롤 사용 여부
+                vertical : false,		// 세로 방향 슬라이드 옵션
+                prevArrow : "<button type='button' class='slick-prev'>Previous</button>",		// 이전 화살표 모양 설정
+                nextArrow : "<button type='button' class='slick-next'>Next</button>",
+            });
+        })
+
+    </script>
+</head>
+<script>
+
+    function writeRe(f) {
+        var contents = f.contents.value;
+
+
+        if(contents==''){
+            alert("간단리뷰를 작성해주세요!");
+            return;
+        }
+        f.method="post";
+        f.action="/addReview";
+        f.submit();
+
+    }
+    function changeWatch(f){
+        var title = f.title.value;
+        if(!confirm(title+"를 보셨습니까?")){
+            return;
+        }
+        f.method="post";
+        f.action="/changeWatch";
+        f.submit();
+
+    }
+
+
+    function changeNonWatch(f){
+        var title = f.title.value;
+        if(!confirm(title+"를 안보셨습니까?")){
+            return;
+        }
+
+        f.method="post";
+        f.action="/changeWatch"
+        f.submit();
+    }
+
+    function changeDel_flag(f){
+        var title = f.title.value;
+        if(!confirm(title+"를 목록에서 삭제 하시겠습니까?")){
+            return;
+        }
+
+        f.method="post";
+        f.action="/delete";
+        f.submit();
+
+    }
+
+    function detail(f) {
+
+        var type=f.type.value;
+        var contentid = f.contentid.value;
+        alert(contentid)
+        alert(type)
+        location.href="/detail?contentid="+contentid+"&type="+type;
+
+    }
+</script>
+<style>
+    html{
+        font-size: 10px;
+        overflow: hidden;
+    }
+    html,body{
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        background: #FEF1E6;
+    }
+    .section {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .middle{
+        position: absolute;
+        width:85%;
+        height: 50%;
+        background: #90AACB;
+        right:0%;
+        top:-2%;
+
+        border-radius: 15px;
+    }
+    .bottom{
+        position: absolute;
+        width:90%;
+        height: 50%;
+        background: #90AACB;
+        left:-2%;
+        bottom:0%;
+        border-radius: 15px;
+    }
+     .slider_1{
+         position: absolute;
+         right: 5%;
+         top:15%;
+         width: 80%;
+         height: 80%;
+
+     }
+
+    .slider_2{
+        position: absolute;
+        right: 7%;
+        top:10%;
+        width: 80%;
+        height: 80%;
+        z-index: 2;
+
+    }
+    .content_2{
+        margin-left: 10%;
+        width: 80%;
+        height: 100%;
+        position: relative;
+    }
+    .title{
+        position: absolute;
+        top:0px;
+        background: #90AACB;
+        font-size: 2.5rem;
+        left: 38%;
+
+        border-radius: 30px ;
+        border:1px solid #90AACB;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+    }
+    #logo{
+
+
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 3rem;
+        /*line-height: 84px;*/
+        margin-left: 2.5%;
+        color: #161E54;
+    }
+    .info{
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 3rem;
+        /*line-height: 84px;*/
+        margin-left: 2.5%;
+        color: #FEF1E6;
+    }
+    .wish_button_1{
+        width :23%;
+        height: 10%;
+
+        border-radius: 30px ;
+        border:1px solid #90AACB;
+        font-size: 5px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+
+    }.wish_button_2{
+        width :20%;
+        height: 10%;
+
+        border-radius: 30px ;
+        border:1px solid #90AACB;
+        font-size: 5px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+
+    }
+    .btn_div{
+        margin-left: 55%;
+    }
+    .star{
+        position: absolute;
+        top:15%;
+         left: 39%;
+        cursor:pointer;
+
+    }
+    .review{
+        position: absolute;
+        top:30%;
+        left: 38%;
+        width:25%;
+        height: 30%;
+        text-align: center;
+    }
+    @keyframes blink-effect { 60% { opacity: 30%; } }
+
+    .rw{
+        position: absolute;
+        right: 5%;
+        top:5%;
+        animation: blink-effect 3s step-end infinite;
+        font-size: 3rem;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        color: #FEF1E6;
+        text-decoration: none;
+
+    }
+
+
+</style>
+<body>
+        <div class="section">
+
+            <div class="top">
+                <h1 id="logo" onclick="location.href='/'">무비드랍!</h1>
+
+            </div>
+
+            <div class="middle">
+                <h2 class="info" th:text="${session.name}+'님의 위시리스트'" ></h2>
+                    <div class="slider_1">
+                        <div class="nonWatch" th:each="cart : ${cartList}"  th:if="${cart.watch=='true' and cart.del_flag=='0'}">
+                                <form class="content" >
+                                    <input type="hidden" name="id" th:value="${cart.id}"/>
+                                    <input type="hidden" name="contentid" th:value="${cart.contentid}"/>
+                                    <input type="hidden" name="watch" th:value="${cart.watch}"/>
+                                    <input type="hidden" name="del_flag" th:value="${cart.del_flag}"/>
+                                    <input type="hidden" name="type" th:value="${cart.type}"/>
+
+                                    <input type="image" th:src="${cart.posterPath}" onclick="detail(this.form);return false" style="margin-left:16%; width:60%; height: 280px;  border-radius: 15px;"/>
+                                    <input type="text" name="title" th:value="${cart.title}" style="font-family: Roboto; font-style: normal;font-weight: bold;margin-top:3%; border:none; margin-left:15%; font-size:1.7rem;background: #90AACB;" readonly/>
+
+
+                                        <div class="btn_div">
+                                        <input class="wish_button_1" type="button" value="봤어요!" onclick="changeWatch(this.form);" >
+                                        <input class="wish_button_2" type="button" value="삭제" onclick="changeDel_flag(this.form);">
+                                        </div>
+                                </form>
+                        </div>
+                    </div>
+
+            </div>
+
+            <div class="bottom">
+                <h2 class="info" th:text="${session.name}+'님이 시청한 컨텐츠'" ></h2>
+                <a class="rw" onclick="location.href='/seeReview'" >실시간 리뷰보기!</a>
+
+                <div class="slider_2">
+
+                        <div class="watch"  th:each="cart : ${cartList}" th:if="${cart.watch=='false' and cart.del_flag=='0'}">
+                            <form class="content_2" >
+                                <input type="hidden" name="id" th:value="${cart.id}"/>
+                                <input type="hidden" name="contentid" th:value="${cart.contentid}"/>
+                                <input type="hidden" name="watch" th:value="${cart.watch}"/>
+                                <input type="hidden" name="del_flag" th:value="${cart.del_flag}"/>
+                                <input type="hidden" name="posterPath" th:value="${cart.posterPath}"/>
+                                <input type="hidden" name="type" th:value="${cart.type}"/>
+
+                                <input type="image" th:src="${cart.posterPath}" onclick="detail(this.form);return false;" style="position:relative; margin-left:10%; width:25%; height: 310px;  border-radius: 15px;"/>
+                                <input class="title" type="text" name="title" th:value="${cart.title}" readonly> <br>
+
+
+                                <div class="star">
+                                    <input type="radio" name="star"value="1">1점
+                                    <input type="radio" name="star"value="2">2점
+                                    <input type="radio" name="star"value="3" checked>3점
+                                    <input type="radio" name="star"value="4">4점
+                                    <input type="radio" name="star"value="5">5점
+
+                                </div>
+                                <input class="review" type="text" name="contents" maxlength="200" placeholder="간단리뷰를 작성해주세요!"></td>
+
+
+                                <div class="btn_div">
+                                        <input type="button" class="wish_button_1" style=" border:none;" value="안 봤어요!" onclick="changeNonWatch(this.form);">
+                                        <input type="button" class="wish_button_1" style=" border:none;" value="삭제" onclick="changeDel_flag(this.form);">
+                                        <input type="button" class="wish_button_1" onclick="writeRe(this.form);" value="리뷰등록"></td>
+                                    </div>
+
+                            </form>
+                        </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+</body>
+</html>
